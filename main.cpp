@@ -9,11 +9,13 @@ void execute_lesson2();
 
 //урок 3
 void execute_lesson3();
-void checkNumber(int number);
+void checkNumberTest(int number);
 
 //урок 4
 void execute_lesson4();
 void decimalToBinaryTest(int number);
+void powerTest(int number, int power);
+void powerWithParityTest(int number, int power);
 
 int main(int argc, char *argv[])
 {
@@ -33,16 +35,16 @@ void execute_lesson2()
 void execute_lesson3()
 {
     printf("=============== LESSON 3 ===============\n");
-    checkNumber(7);
-    checkNumber(10);
-    checkNumber(23);
-    checkNumber(2'100'127);
-    checkNumber(0);
-    checkNumber(1);
-    checkNumber(2);
+    checkNumberTest(7);
+    checkNumberTest(10);
+    checkNumberTest(23);
+    checkNumberTest(2'100'127);
+    checkNumberTest(0);
+    checkNumberTest(1);
+    checkNumberTest(2);
 }
 
-void checkNumber(int number)
+void checkNumberTest(int number)
 {
     bool result = task3::checkSimpleNumber(number);
     if (result)
@@ -64,6 +66,19 @@ void execute_lesson4()
     decimalToBinaryTest(236'645);
 
     printf("-> Task2:\n");
+    printf("1) Recursive:\n");
+    powerTest(2, 3);
+    powerTest(6, 7);
+    powerTest(10, 6);
+    powerTest(3, 10);
+    powerTest(2, 10);
+
+    printf("2) Recursive with degree parity:\n");
+    powerWithParityTest(2, 3);
+    powerWithParityTest(6, 7);
+    powerWithParityTest(10, 6);
+    powerWithParityTest(3, 10);
+    powerWithParityTest(2, 10);
 
     printf("-> Task3:\n");
 }
@@ -73,4 +88,16 @@ void decimalToBinaryTest(int number)
     printf("%d >>> ", number);
     task4::decimalToBinary(number);
     printf("\n");
+}
+
+void powerTest(int number, int power)
+{
+    int result = task4::pow(number, power);
+    printf("%d ^ %d >>> %d\n", number, power, result);
+}
+
+void powerWithParityTest(int number, int power)
+{
+    int result = task4::pow_with_parity(number, power);
+    printf("%d ^ %d >>> %d\n", number, power, result);
 }
