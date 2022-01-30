@@ -4,4 +4,6 @@ project(Algorithms)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(Algorithms
-        Task2/main.cpp)
+        main.cpp
+        Task2/task2.cpp Task2/task2.h
+        Task3/task3.cpp Task3/task3.h)
