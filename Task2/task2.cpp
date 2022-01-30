@@ -4,6 +4,6 @@ namespace task2
 {
     void printHelloWorld()
     {
-        printf("Hello world!");
+        printf("Hello world!\n");
     }
 }
