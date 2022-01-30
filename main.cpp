@@ -2,6 +2,7 @@
 
 #include "Task2/task2.h"
 #include "Task3/task3.h"
+#include "Task4/task4.h"
 
 //урок 2
 void execute_lesson2();
@@ -10,10 +11,15 @@ void execute_lesson2();
 void execute_lesson3();
 void checkNumber(int number);
 
+//урок 4
+void execute_lesson4();
+void decimalToBinaryTest(int number);
+
 int main(int argc, char *argv[])
 {
     execute_lesson2();
     execute_lesson3();
+    execute_lesson4();
 
     return 0;
 }
@@ -46,4 +52,25 @@ void checkNumber(int number)
     }
 
     printf("Number %d is NOT simple\n", number);
+}
+
+void execute_lesson4()
+{
+    printf("=============== LESSON 4 ===============\n");
+    printf("-> Task1:\n");
+    decimalToBinaryTest(3);
+    decimalToBinaryTest(7);
+    decimalToBinaryTest(16);
+    decimalToBinaryTest(236'645);
+
+    printf("-> Task2:\n");
+
+    printf("-> Task3:\n");
+}
+
+void decimalToBinaryTest(int number)
+{
+    printf("%d >>> ", number);
+    task4::decimalToBinary(number);
+    printf("\n");
 }
