@@ -16,6 +16,7 @@ void execute_lesson4();
 void decimalToBinaryTest(int number);
 void powerTest(int number, int power);
 void powerWithParityTest(int number, int power);
+void kingPathTest();
 
 int main(int argc, char *argv[])
 {
@@ -81,6 +82,7 @@ void execute_lesson4()
     powerWithParityTest(2, 10);
 
     printf("-> Task3:\n");
+    kingPathTest();
 }
 
 void decimalToBinaryTest(int number)
@@ -98,6 +100,22 @@ void powerTest(int number, int power)
 
 void powerWithParityTest(int number, int power)
 {
-    int result = task4::pow_with_parity(number, power);
+    int result = task4::powWithParity(number, power);
     printf("%d ^ %d >>> %d\n", number, power, result);
+}
+
+void kingPathTest()
+{
+    const size_t sizeX = 5;
+    const size_t sizeY = 5;
+
+    for (int y = 0; y < sizeY; ++y)
+    {
+        for (int x = 0; x < sizeX; ++x)
+        {
+            printf("%5d", task4::kingRoutes(x, y));
+        }
+
+        printf("\n");
+    }
 }
