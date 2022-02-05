@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "arrayUtils.h"
 
 namespace task5
@@ -53,6 +54,56 @@ namespace task5
         }
     }
 
+    /* 3. Реализовать алгоритм Трабба-Прадо-Кнута в коде на языке С
+     * 1 - запросить у пользователя 11 чисел и записать их в последовательность П
+     * 2 - инвертировать последовательность П
+     * 3 - для каждого элемента последовательности П произвести вычисление по формуле sqrt(fabs(Х)) + 5 * pow(Х, 3)
+     * и если результат вычислений превышает 400 - проинформировать пользователя.
+     */
+    void algorithmTask3()
+    {
+        const size_t ARR_SIZE = 11;
+        const size_t CALC_LIMIT = 400;
+        int* arr = new int[ARR_SIZE];
+
+        printf("Please enter sequence:\n");
+        int num;
+        for (int i = 0; i < ARR_SIZE; ++i)
+        {
+            scanf("%d", &num);
+            arr[i] = num;
+        }
+
+        printf("Your sequence:\n");
+        arrayUtils::printArray(arr, ARR_SIZE);
+
+        int l = 0;
+        int r = ARR_SIZE - 1;
+
+        while (l < r)
+        {
+            swap(&arr[l], &arr[r]);
+            l++;
+            r--;
+        }
+
+        printf("Inverted sequence:\n");
+        arrayUtils::printArray(arr, ARR_SIZE);
+
+        for (int i = 0; i < ARR_SIZE; ++i)
+        {
+            int result = sqrt(fabs(arr[i])) + 5 * pow(arr[i], 3);
+            arr[i] = result;
+            if (result > CALC_LIMIT)
+                printf("Result %d is greater than calc limit: %d!\n", result, CALC_LIMIT);
+        }
+
+        printf("Result sequence:\n");
+        arrayUtils::printArray(arr, ARR_SIZE);
+
+        delete[] arr;
+    }
+
     // ================ Тестирование ================
 
     void sortTest()
@@ -84,7 +135,8 @@ namespace task5
         printf("After sort:\n");
         arrayUtils::printArray(matrix, sizeX, sizeY);
 
-        for (int i = 0; i < sizeY; ++i) {
+        for (int i = 0; i < sizeY; ++i)
+        {
             delete[] matrix[i];
         }
 
@@ -96,5 +148,8 @@ namespace task5
         printf("=============== LESSON 5 ===============\n");
         printf("-> Task1:\n");
         sortTest();
+
+        printf("-> Task3:\n");
+        algorithmTask3();
     }
 }
