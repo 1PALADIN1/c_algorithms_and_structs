@@ -6,4 +6,10 @@ namespace task2
     {
         printf("Hello world!\n");
     }
+
+    void execute()
+    {
+        printf("=============== LESSON 2 ===============\n");
+        printHelloWorld();
+    }
 }

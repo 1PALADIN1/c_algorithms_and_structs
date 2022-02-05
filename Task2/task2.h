@@ -1,4 +1,4 @@
 namespace task2
 {
-    void printHelloWorld();
+    void execute();
 }

@@ -75,4 +75,69 @@ namespace task4
 
         return kingRoutes(x, y - 1) + kingRoutes(x - 1, y);
     }
+
+    // ================ Тестирование ================
+
+    void decimalToBinaryTest(int number)
+    {
+        printf("%d >>> ", number);
+        task4::decimalToBinary(number);
+        printf("\n");
+    }
+
+    void powerTest(int number, int power)
+    {
+        int result = task4::pow(number, power);
+        printf("%d ^ %d >>> %d\n", number, power, result);
+    }
+
+    void powerWithParityTest(int number, int power)
+    {
+        int result = task4::powWithParity(number, power);
+        printf("%d ^ %d >>> %d\n", number, power, result);
+    }
+
+    void kingPathTest()
+    {
+        const size_t sizeX = 5;
+        const size_t sizeY = 5;
+
+        for (int y = 0; y < sizeY; ++y)
+        {
+            for (int x = 0; x < sizeX; ++x)
+            {
+                printf("%5d", task4::kingRoutes(x, y));
+            }
+
+            printf("\n");
+        }
+    }
+
+    void execute()
+    {
+        printf("=============== LESSON 4 ===============\n");
+        printf("-> Task1:\n");
+        decimalToBinaryTest(3);
+        decimalToBinaryTest(7);
+        decimalToBinaryTest(16);
+        decimalToBinaryTest(236'645);
+
+        printf("-> Task2:\n");
+        printf("1) Recursive:\n");
+        powerTest(2, 3);
+        powerTest(6, 7);
+        powerTest(10, 6);
+        powerTest(3, 10);
+        powerTest(2, 10);
+
+        printf("2) Recursive with degree parity:\n");
+        powerWithParityTest(2, 3);
+        powerWithParityTest(6, 7);
+        powerWithParityTest(10, 6);
+        powerWithParityTest(3, 10);
+        powerWithParityTest(2, 10);
+
+        printf("-> Task3:\n");
+        kingPathTest();
+    }
 }
