@@ -1,4 +1,4 @@
-namespace task5
+namespace task6
 {
     void execute();
 }

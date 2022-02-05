@@ -1,7 +1,7 @@
 #include "Task2/task2.h"
 #include "Task3/task3.h"
 #include "Task4/task4.h"
-#include "Task5/task5.h"
+#include "Task6/task6.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 //    task3::execute();
 //    task4::execute();
 
-    task5::execute();
+    task6::execute();
 
     return 0;
 }

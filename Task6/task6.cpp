@@ -2,7 +2,7 @@
 #include <math.h>
 #include "arrayUtils.h"
 
-namespace task5
+namespace task6
 {
     void swap(int *a, int *b)
     {
@@ -145,7 +145,7 @@ namespace task5
 
     void execute()
     {
-        printf("=============== LESSON 5 ===============\n");
+        printf("=============== LESSON 6 ===============\n");
         printf("-> Task1:\n");
         sortTest();
 
