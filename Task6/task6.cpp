@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "arrayUtils.h"
+#include "../Utils/arrayUtils.h"
 
 namespace task6
 {
