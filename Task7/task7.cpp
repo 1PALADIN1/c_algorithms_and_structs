@@ -3,6 +3,7 @@
 
 namespace task7
 {
+    // 1. Описать в коде улучшенный алгоритм быстрой сортировки
     void insertSort(int* arr, size_t first, size_t last)
     {
         int temp, pos;
@@ -43,7 +44,6 @@ namespace task7
         return mid;
     }
 
-    // 1. Описать в коде улучшенный алгоритм быстрой сортировки
     void improvedQuickSort(int* arr, size_t first, size_t last, size_t chunk_size)
     {
         if (last - first <= chunk_size)
@@ -82,8 +82,59 @@ namespace task7
     // 2. Сортировать в массиве целых положительных чисел только чётные числа,
     // нечётные оставив на своих местах при помощи алгоритма блочной сортировки,
     // то есть массив вида [0 2 8 3 4 6 5 9 8 2 7 3] превратить в [0 2 2 3 4 6 5 9 8 8 7 3]
-    void positiveNumberSort()
+
+    //получаем индекс следующего чётного числа
+    int getNextIndex(int* arr, int current_index, size_t size)
     {
+        for (int i = current_index; i < size; ++i)
+        {
+            if (arr[i] % 2 == 0)
+                return i;
+        }
+
+        //достигли конца массива
+        return -1;
+    }
+
+    void bucketPositiveSort(int* arr, size_t size)
+    {
+        const size_t MAX = size;
+        const size_t BUCKET_SIZE = 10;
+
+        int buckets[BUCKET_SIZE][MAX + 1];
+        for (int i = 0; i < BUCKET_SIZE; ++i)
+            buckets[i][MAX] = 0;
+
+        for (int digit = 1; digit < 1'000'000'000; digit*=BUCKET_SIZE)
+        {
+            for (int i = 0; i < MAX; ++i)
+            {
+                //нечётные числа не добавляем в корзину
+                if (arr[i] % 2 != 0)
+                    continue;
+
+                int d = (arr[i] / digit) % BUCKET_SIZE;
+                buckets[d][buckets[d][MAX]++] = arr[i];
+            }
+
+            int idx = 0;
+            bool skip = false;
+            for (int i = 0; i < BUCKET_SIZE; ++i)
+            {
+                for (int j = 0; j < buckets[i][MAX]; ++j)
+                {
+                    //раскидываем значения только по индексам, где стоят чётные числа
+                    idx = getNextIndex(arr, idx, size);
+                    if (idx == -1)
+                        break;
+
+                    arr[idx] = buckets[i][j];
+                    idx++;
+                }
+
+                buckets[i][MAX] = 0;
+            }
+        }
     }
 
     // ================ Тестирование ================
@@ -105,6 +156,16 @@ namespace task7
 
     void positiveNumberSortTest()
     {
+        const size_t ARR_SIZE = 30;
+        int* arr = arrayUtils::createRandomIntArray(ARR_SIZE, 20);
+
+        printf("Array before sort:\n");
+        arrayUtils::printArray(arr, ARR_SIZE);
+
+        bucketPositiveSort(arr, ARR_SIZE);
+
+        printf("Array after sort:\n");
+        arrayUtils::printArray(arr, ARR_SIZE);
     }
 
     void execute()
@@ -113,7 +174,7 @@ namespace task7
         printf("-> Task1:\n");
         improvedQuickSortTest();
 
-//        printf("-> Task2:\n");
-//        positiveNumberSortTest();
+        printf("-> Task2:\n");
+        positiveNumberSortTest();
     }
 }

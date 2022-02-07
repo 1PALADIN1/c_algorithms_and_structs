@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctime>
 
 namespace arrayUtils
 {
@@ -12,6 +13,7 @@ namespace arrayUtils
 
     int* createRandomIntArray(size_t size, size_t maxElement)
     {
+        srand( time(0) );
         int* arr = new int[size];
         for (int i = 0; i < size; ++i)
             arr[i] = rand() % maxElement;
