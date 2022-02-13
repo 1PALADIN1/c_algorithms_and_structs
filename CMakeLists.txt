@@ -10,4 +10,7 @@ add_executable(Algorithms
         Task4/task4.cpp Task4/task4.h
         Task6/task6.cpp Task6/task6.h
         Utils/arrayUtils.cpp Utils/arrayUtils.h
-        Task7/task7.cpp Task7/task7.h)
+        Task7/task7.cpp Task7/task7.h
+        Task9/task9.cpp Task9/task9.h
+        Task9/queue.cpp Task9/queue.h
+        Task9/stack.cpp Task9/stack.h)
