@@ -11,7 +11,7 @@ namespace queue
         int data;
     } Node;
 
-    Node* queue[QUEUE_SIZE];
+    Node* Queue[QUEUE_SIZE];
     int head;
     int tail;
     int items;
@@ -19,7 +19,7 @@ namespace queue
     void init()
     {
         for (int i = 0; i < QUEUE_SIZE; ++i)
-            queue[i] = nullptr;
+            Queue[i] = nullptr;
 
         head = 0;
         tail = 0;
@@ -40,7 +40,7 @@ namespace queue
 
         //добавляем элемент в конец очереди
         int idx = tail++ % QUEUE_SIZE;
-        queue[idx] = node;
+        Queue[idx] = node;
         items++;
     }
 
@@ -60,16 +60,16 @@ namespace queue
         for (int i = head; i < tail; ++i)
         {
             idx = i % QUEUE_SIZE;
-            if (queue[idx]->priority > max_priority)
+            if (Queue[idx]->priority > max_priority)
             {
-                max_priority = queue[idx]->priority;
+                max_priority = Queue[idx]->priority;
                 max_priority_idx = i; //запоминаем его индекс
             }
 
             idx++;
         }
 
-        Node *result = queue[max_priority_idx % QUEUE_SIZE];
+        Node *result = Queue[max_priority_idx % QUEUE_SIZE];
 
         //сдвигаем элементы
         while (max_priority_idx > head)
@@ -78,10 +78,10 @@ namespace queue
             max_priority_idx--;
             int prev_index = max_priority_idx % QUEUE_SIZE;
 
-            queue[current_index] = queue[prev_index];
+            Queue[current_index] = Queue[prev_index];
         }
 
-        queue[head++ % QUEUE_SIZE] = nullptr;
+        Queue[head++ % QUEUE_SIZE] = nullptr;
         items--;
         return result;
     }
@@ -91,10 +91,10 @@ namespace queue
         printf("[ ");
         for (int i = 0; i < QUEUE_SIZE; ++i)
         {
-            if (queue[i] == nullptr)
+            if (Queue[i] == nullptr)
                 printf("[*, *] ");
             else
-                printf("[%d, %d] ", queue[i]->priority, queue[i]->data);
+                printf("[%d, %d] ", Queue[i]->priority, Queue[i]->data);
         }
 
         printf("]\n");

@@ -1,11 +1,33 @@
 #include <stdio.h>
 #include "queue.h"
+#include "stack.h"
 
 namespace task9
 {
     //2. Реализовать перевод из десятичной в двоичную систему счисления с использованием стека.
-    void decimalToBinary()
+    void decimalToBinary(int number)
     {
+        if (number == 0)
+        {
+            printf("%d >>> 0\n", number);
+            return;
+        }
+
+        stack::init();
+
+        printf("%d >>> ", number);
+
+        while (number > 0)
+        {
+            int binary_number = number % 2;
+            stack::push(binary_number);
+            number /= 2;
+        }
+
+        while (stack::getSize() > 0)
+            printf("%d", stack::pop());
+
+        printf("\n");
     }
 
     // ================ Тестирование ================
@@ -52,6 +74,14 @@ namespace task9
 
     void decimalToBinaryTest()
     {
+        decimalToBinary(10);
+        decimalToBinary(21);
+        decimalToBinary(7);
+        decimalToBinary(3);
+        decimalToBinary(767);
+        decimalToBinary(16);
+        decimalToBinary(0);
+        decimalToBinary(1);
     }
 
     void execute()
@@ -60,7 +90,7 @@ namespace task9
         printf("-> Task1:\n");
         priorityQueueTest();
 
-//        printf("-> Task2:\n");
-//        decimalToBinaryTest();
+        printf("-> Task2:\n");
+        decimalToBinaryTest();
     }
 }
