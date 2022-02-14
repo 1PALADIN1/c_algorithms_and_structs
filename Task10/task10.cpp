@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "stack_task10.h"
+#include "linkedlist.h"
 
 #define true 1 == 1
 #define false 1 != 1
@@ -74,6 +75,21 @@ namespace task10
     }
 
     /* 2. Создать функцию, копирующую односвязный список (без удаления первого списка). */
+    void copyLinkedList(linkedlist::List *start_list, linkedlist::List *result_list)
+    {
+        printf("Copy start list: ");
+        linkedlist::printList(start_list);
+
+        linkedlist::Node *current = start_list->head;
+        while (current != nullptr)
+        {
+            linkedlist::insert(result_list, current->data);
+            current = current->next;
+        }
+
+        printf("List successfully copied! Result:\n");
+        linkedlist::printList(result_list);
+    }
 
     /* 3. Реализуйте алгоритм, который определяет, отсортирован ли связный список. */
 
@@ -110,10 +126,31 @@ namespace task10
         checkExpression(test_expr11);
     }
 
+    void copyLinkedListTest()
+    {
+        linkedlist::List *start_list = new linkedlist::List();
+        linkedlist::init(start_list);
+        linkedlist::insert(start_list, 12);
+        linkedlist::insert(start_list, 1);
+        linkedlist::insert(start_list, 15);
+        linkedlist::insert(start_list, 332);
+        linkedlist::insert(start_list, -34);
+        linkedlist::insert(start_list, 184);
+        linkedlist::insert(start_list, 2);
+
+        linkedlist::List *result_list = new linkedlist::List();
+        linkedlist::init(result_list);
+
+        copyLinkedList(start_list, result_list);
+    }
+
     void execute()
     {
         printf("=============== LESSON 10 ===============\n");
         printf("-> Task1:\n");
         checkExpressionTest();
+
+        printf("-> Task2:\n");
+        copyLinkedListTest();
     }
 }
