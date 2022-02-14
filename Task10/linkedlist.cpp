@@ -97,4 +97,17 @@ namespace linkedlist
 
         printf(" Size: %d\n", lst->size);
     }
+
+    void dispose(List *lst)
+    {
+        linkedlist::Node *current = lst->head;
+        while (current != nullptr)
+        {
+            Node *tmp = current;
+            current = current->next;
+            delete tmp;
+        }
+
+        init(lst);
+    }
 }

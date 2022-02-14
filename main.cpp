@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 //    task6::execute();
 //    task7::execute();
 
-//    task9::execute();
+    task9::execute();
     task10::execute();
 
     return 0;

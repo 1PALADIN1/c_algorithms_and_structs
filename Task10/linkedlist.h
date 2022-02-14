@@ -15,4 +15,6 @@ namespace linkedlist
     void insert(List *lst, int data);
     Node* remove(List *lst, int data);
     void printList(List *lst);
+
+    void dispose(List *lst);
 }

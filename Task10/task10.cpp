@@ -92,6 +92,53 @@ namespace task10
     }
 
     /* 3. Реализуйте алгоритм, который определяет, отсортирован ли связный список. */
+    // asc = true - по возрастающей
+    // asc = false - по убывающей
+    boolean checkListSorted(linkedlist::List *list, boolean asc)
+    {
+        if (list->size == 0)
+        {
+            printf("List is empty!\n");
+            return false;
+        }
+
+        linkedlist::Node *current = list->head;
+        int prev_value = current->data;
+
+        while (current->next != nullptr)
+        {
+            current = current->next;
+
+            if (asc)
+            {
+                //по возрастающей
+                if (current->data >= prev_value)
+                {
+                    prev_value = current->data;
+                    continue;
+                }
+            }
+            else
+            {
+                //по убывающей
+                if (current->data <= prev_value)
+                {
+                    prev_value = current->data;
+                    continue;
+                }
+            }
+
+            printf("List: ");
+            linkedlist::printList(list);
+            printf("is NOT SORTED!\n");
+            return false;
+        }
+
+        printf("List: ");
+        linkedlist::printList(list);
+        printf("is SORTED!\n");
+        return true;
+    }
 
     // ================ Тестирование ================
 
@@ -142,6 +189,71 @@ namespace task10
         linkedlist::init(result_list);
 
         copyLinkedList(start_list, result_list);
+
+        linkedlist::dispose(start_list);
+        linkedlist::dispose(result_list);
+
+        delete start_list;
+        delete result_list;
+    }
+
+    void checkListSortedTest()
+    {
+        linkedlist::List *not_sorted_list = new linkedlist::List();
+        linkedlist::init(not_sorted_list);
+        linkedlist::insert(not_sorted_list, 12);
+        linkedlist::insert(not_sorted_list, 1);
+        linkedlist::insert(not_sorted_list, 15);
+        linkedlist::insert(not_sorted_list, 15);
+        linkedlist::insert(not_sorted_list, 332);
+        linkedlist::insert(not_sorted_list, -34);
+        linkedlist::insert(not_sorted_list, 184);
+        linkedlist::insert(not_sorted_list, 2);
+        checkListSorted(not_sorted_list, true);
+
+        linkedlist::List *sorted_list = new linkedlist::List();
+        linkedlist::init(sorted_list);
+        linkedlist::insert(sorted_list, 0);
+        linkedlist::insert(sorted_list, 12);
+        linkedlist::insert(sorted_list, 23);
+        linkedlist::insert(sorted_list, 1'000);
+        linkedlist::insert(sorted_list, 1'000);
+        linkedlist::insert(sorted_list, 1'222);
+        linkedlist::insert(sorted_list, 12'122);
+        linkedlist::insert(sorted_list, 20'000);
+        linkedlist::insert(sorted_list, 20'000);
+        linkedlist::insert(sorted_list, 120'000);
+        linkedlist::insert(sorted_list, 1'200'000);
+        checkListSorted(sorted_list, true);
+
+        linkedlist::List *sorted_list_1 = new linkedlist::List();
+        linkedlist::init(sorted_list_1);
+        linkedlist::insert(sorted_list_1, 1);
+        checkListSorted(sorted_list_1, true);
+
+        linkedlist::List *sorted_list_2 = new linkedlist::List();
+        linkedlist::init(sorted_list_2);
+        linkedlist::insert(sorted_list_2, 100'000);
+        linkedlist::insert(sorted_list_2, 12'000);
+        linkedlist::insert(sorted_list_2, 1'000);
+        linkedlist::insert(sorted_list_2, 1'000);
+        linkedlist::insert(sorted_list_2, 125);
+        linkedlist::insert(sorted_list_2, 10);
+        linkedlist::insert(sorted_list_2, 0);
+        linkedlist::insert(sorted_list_2, -19);
+        linkedlist::insert(sorted_list_2, -19);
+        linkedlist::insert(sorted_list_2, -129);
+        checkListSorted(sorted_list_2, false);
+
+        linkedlist::dispose(not_sorted_list);
+        linkedlist::dispose(sorted_list);
+        linkedlist::dispose(sorted_list_1);
+        linkedlist::dispose(sorted_list_2);
+
+        delete not_sorted_list;
+        delete sorted_list;
+        delete sorted_list_1;
+        delete sorted_list_2;
     }
 
     void execute()
@@ -152,5 +264,8 @@ namespace task10
 
         printf("-> Task2:\n");
         copyLinkedListTest();
+
+        printf("-> Task3:\n");
+        checkListSortedTest();
     }
 }
