@@ -5,6 +5,7 @@
 #include "Task7/task7.h"
 #include "Task9/task9.h"
 #include "Task10/task10.h"
+#include "Task12/task12.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,8 +16,10 @@ int main(int argc, char *argv[])
 //    task6::execute();
 //    task7::execute();
 
-    task9::execute();
-    task10::execute();
+//    task9::execute();
+//    task10::execute();
+
+    task12::execute();
 
     return 0;
 }

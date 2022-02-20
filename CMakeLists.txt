@@ -16,4 +16,6 @@ add_executable(Algorithms
         Task9/stack.cpp Task9/stack.h
         Task10/task10.cpp Task10/task10.h
         Task10/stack_task10.cpp Task10/stack_task10.h
-        Task10/linkedlist.cpp Task10/linkedlist.h)
+        Task10/linkedlist.cpp Task10/linkedlist.h
+        Task12/task12.cpp Task12/task12.h
+        Task12/binaryTree.cpp Task12/binaryTree.h)
