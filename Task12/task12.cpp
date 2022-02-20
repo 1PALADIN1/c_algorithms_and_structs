@@ -51,8 +51,22 @@ namespace task12
     /*
      * 2. Написать рекурсивную функцию бинарного поиска в дереве хранящемся в узлах, а не в массиве.
      */
-    void binarySearch(binaryTree::TreeNode *tree)
+    boolean binarySearch(binaryTree::TreeNode *root, int element)
     {
+        binaryTree::TreeNode *current = root;
+
+        while (current != nullptr)
+        {
+            if (current->key == element)
+                return true;
+
+            if (current->key > element)
+                current = current->left;
+            else
+                current = current->right;
+        }
+
+        return false;
     }
 
     // ================ Тестирование ================
@@ -66,7 +80,7 @@ namespace task12
         binaryTree::insert(tree, 25);
         binaryTree::insert(tree, 1'223);
         binaryTree::insert(tree, 49);
-        binaryTree::insert(tree, 12'34);
+        binaryTree::insert(tree, 1'234);
         binaryTree::insert(tree, 999);
         binaryTree::insert(tree, 544);
 
@@ -122,6 +136,35 @@ namespace task12
 
     void binarySearchTest()
     {
+        binaryTree::TreeNode *tree = binaryTree::insert(nullptr, 10);
+        binaryTree::insert(tree, 120);
+        binaryTree::insert(tree, 8);
+        binaryTree::insert(tree, 25);
+        binaryTree::insert(tree, 13);
+        binaryTree::insert(tree, 700);
+        binaryTree::insert(tree, 49);
+        binaryTree::insert(tree, 2);
+        binaryTree::insert(tree, 14);
+        binaryTree::insert(tree, 222);
+        binaryTree::insert(tree, 12'345);
+        binaryTree::insert(tree, 999);
+        binaryTree::insert(tree, 544);
+
+        //ищем
+        int element = 222;
+        printf("Element %d %s\n", element, binarySearch(tree, element) ? "IS FOUND" : "IS NOT FOUND");
+        element = 12;
+        printf("Element %d %s\n", element, binarySearch(tree, element) ? "IS FOUND" : "IS NOT FOUND");
+        element = 14;
+        printf("Element %d %s\n", element, binarySearch(tree, element) ? "IS FOUND" : "IS NOT FOUND");
+        element = 999;
+        printf("Element %d %s\n", element, binarySearch(tree, element) ? "IS FOUND" : "IS NOT FOUND");
+        element = 50;
+        printf("Element %d %s\n", element, binarySearch(tree, element) ? "IS FOUND" : "IS NOT FOUND");
+        element = 544;
+        printf("Element %d %s\n", element, binarySearch(tree, element) ? "IS FOUND" : "IS NOT FOUND");
+
+        binaryTree::dispose(tree);
     }
 
     void execute()
@@ -133,7 +176,7 @@ namespace task12
         printf("-> Task1.2:\n");
         checkRandomTreeBalancedTest();
 
-//        printf("-> Task2:\n");
-//        binarySearchTest();
+        printf("-> Task2:\n");
+        binarySearchTest();
     }
 }
