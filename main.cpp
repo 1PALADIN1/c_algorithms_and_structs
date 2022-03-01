@@ -8,6 +8,7 @@
 #include "Task12/task12.h"
 #include "Task13/task13.h"
 #include "Task15/task15.h"
+#include "Task16/task16.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,7 @@ int main(int argc, char *argv[])
 //    task13::execute();
 
     task15::execute();
+    task16::execute();
 
     return 0;
 }
