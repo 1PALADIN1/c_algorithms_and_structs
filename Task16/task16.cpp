@@ -64,6 +64,47 @@ namespace task16
     /*
      * 2. Реализовать шифрование и расшифровку перестановками с передаваемым в функцию сообщением и количеством столбцов
      */
+    std::string encodePermutationCipher(std::string message, int key)
+    {
+        int block_size = message.length() % key == 0 ? message.length() / key : message.length() / key + 1;
+        int total_len = block_size * key;
+        char* result = new char[total_len];
+
+        int index = 0;
+        for (int i = 0; i < key; ++i)
+        {
+            for (int j = i; j < total_len; j += key)
+            {
+                result[index] = j < message.length() ? message[j] : '_';
+                index++;
+            }
+        }
+
+        std::string out = std::string(result, total_len);
+        delete[] result;
+        return out;
+    }
+
+    std::string decodePermutationCipher(std::string message, int key)
+    {
+        int block_size = message.length() / key;
+        char* result = new char[message.length()];
+
+        int index = 0;
+
+        for (int i = 0; i < block_size; ++i)
+        {
+            for (int j = i; j < message.length(); j += block_size)
+            {
+                result[index] = message[j];
+                index++;
+            }
+        }
+
+        std::string out = std::string(result, message.length());
+        delete[] result;
+        return out;
+    }
 
     // ================ Тестирование ================
 
@@ -94,10 +135,52 @@ namespace task16
         std::cout << "\'" << message2 << "\' [key:" << key << "]" << std::endl;
     }
 
+    void permutationCipherTest()
+    {
+        std::string message = "thisisasecretmessagetest";
+
+        int key = 5;
+
+        //1
+        std::cout << "Encode: \'" << message << "\' -> ";
+        message = encodePermutationCipher(message, key);
+        std::cout << "\'" << message << "\' [key:" << key << "]" << std::endl;
+
+        std::cout << "Decode: \'" << message << "\' -> ";
+        message = decodePermutationCipher(message, key);
+        std::cout << "\'" << message << "\' [key:" << key << "]" << std::endl;
+
+        //2
+        key = 4;
+
+        std::cout << "Encode: \'" << message << "\' -> ";
+        message = encodePermutationCipher(message, key);
+        std::cout << "\'" << message << "\' [key:" << key << "]" << std::endl;
+
+        std::cout << "Decode: \'" << message << "\' -> ";
+        message = decodePermutationCipher(message, key);
+        std::cout << "\'" << message << "\' [key:" << key << "]" << std::endl;
+
+        //3
+        key = 7;
+
+        std::cout << "Encode: \'" << message << "\' -> ";
+        message = encodePermutationCipher(message, key);
+        std::cout << "\'" << message << "\' [key:" << key << "]" << std::endl;
+
+        std::cout << "Decode: \'" << message << "\' -> ";
+        message = decodePermutationCipher(message, key);
+        std::cout << "\'" << message << "\' [key:" << key << "]" << std::endl;
+
+    }
+
     void execute()
     {
         printf("=============== LESSON 16 ===============\n");
         printf("-> Task1:\n");
         caesarCipherTest();
+
+        printf("-> Task2:\n");
+        permutationCipherTest();
     }
 }
