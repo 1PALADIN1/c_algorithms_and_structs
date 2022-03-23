@@ -12,18 +12,18 @@
 
 int main(int argc, char *argv[])
 {
-//    task2::execute();
-//    task3::execute();
-//    task4::execute();
+    task2::execute();
+    task3::execute();
+    task4::execute();
 
-//    task6::execute();
-//    task7::execute();
+    task6::execute();
+    task7::execute();
 
-//    task9::execute();
-//    task10::execute();
+    task9::execute();
+    task10::execute();
 
-//    task12::execute();
-//    task13::execute();
+    task12::execute();
+    task13::execute();
 
     task15::execute();
     task16::execute();
